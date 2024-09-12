@@ -24,6 +24,7 @@ io.on("connection", (socket) => {
         console.log(`${user} has joined`);
         socket.broadcast.emit('userJoined', { user: "Admin", message: `${users[socket.id]} has joined` });
         socket.emit('welcome', { user: "Admin", message: `Welcome to the chat, ${users[socket.id]}` });
+        io.emit('sendMessage', { user: "Admin", message: `Welcome to the chat, ${users[socket.id]}`, id: socket.id });
     });
 
     socket.on('message', ({ message, id }) => {
